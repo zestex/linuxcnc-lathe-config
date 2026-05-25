@@ -1,0 +1,2 @@
+# Common HAL components
+loadrt hal_manualtoolchange

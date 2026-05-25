@@ -1,0 +1,2 @@
+# Manual tool change handler
+loadrt hal_manualtoolchange

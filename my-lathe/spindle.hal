@@ -1,0 +1,14 @@
+# Spindle control via 7i96s PWM
+setp hm2_7i96s.0.pwmgen.00.scale      3000
+setp hm2_7i96s.0.pwmgen.00.pwm_frequency  5000
+setp hm2_7i96s.0.pwmgen.00.output_type   1      # PWM + Direction
+
+net spindle-speed-cmd   <= spindle.0.speed-out
+net spindle-speed-cmd   => hm2_7i96s.0.pwmgen.00.value
+
+net spindle-on          <= spindle.0.on
+net spindle-on          => hm2_7i96s.0.pwmgen.00.enable
+
+# Direction (optional)
+net spindle-fwd         <= spindle.0.forward
+net spindle-fwd         => hm2_7i96s.0.outm.00.out-00

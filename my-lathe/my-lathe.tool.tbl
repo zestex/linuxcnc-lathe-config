@@ -1,0 +1,5 @@
+; Lathe Tool Table
+T1 P1 X0.0 Z0.0 ; Rough Turning Tool
+T2 P2 X0.0 Z0.0 ; Finish Turning Tool
+T3 P3 X0.0 Z0.0 ; Parting Tool
+T4 P4 X0.0 Z0.0 ; Threading Tool

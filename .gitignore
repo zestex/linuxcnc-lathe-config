@@ -1,0 +1,42 @@
+*.bak
+*.tmp
+*~
+*.log
+latency-test.*
+*.ngc.bak
+*.var
+*.var.bak
+*.pos
+tool.tbl.bak
+backups/
+old/
+.vscode/
+.idea/
+*.swp
+
+# Example: create my-lathe.ini
+cat > my-lathe/my-lathe.ini << 'EOF'
+[EMC]
+MACHINE = my-lathe
+VERSION = 1.0
+
+[DISPLAY]
+DISPLAY = gmoccapy
+LATHE = 1
+PROGRAM_PREFIX = ../../nc_files/
+
+[HAL]
+HALFILE = my-lathe.hal
+HALFILE = core.hal
+HALFILE = spindle.hal
+HALFILE = tool-change.hal
+POSTGUI_HALFILE = postgui.hal
+
+[TRAJ]
+COORDINATES = X Z
+AXES = 2
+LINEAR_UNITS = mm
+
+[KINS]
+KINEMATICS = trivkins coordinates=XZ
+JOINTS = 2

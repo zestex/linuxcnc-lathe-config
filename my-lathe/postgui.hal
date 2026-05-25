@@ -1,0 +1,3 @@
+# Gmoccapy specific connections
+net probe-in          <= hm2_7i96s.0.inm.00.in-00
+net probe-in          => motion.probe-input

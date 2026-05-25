@@ -1,0 +1,37 @@
+# Mesa 7i96s + Motion
+loadrt hostmot2
+loadrt hm2_eth board_ip="10.10.10.10" config="firmware=hm2/7i96s/7i96s_d.bit num_stepgens=4 num_pwmgens=1 num_encoders=1"
+
+loadrt motion
+
+addf motion-command-handler servo-thread
+addf motion-controller servo-thread
+
+addf joint.0 servo-thread
+addf joint.2 servo-thread
+
+# Enable
+net emc-enable-out  <= iocontrol.0.user-enable-out
+net emc-enable-out  => joint.0.amp-enable-out
+net emc-enable-out  => joint.2.amp-enable-out
+
+# ====================== X AXIS ======================
+net x-pos-cmd   <= joint.0.motor-pos-cmd
+net x-pos-cmd   => hm2_7i96s.0.stepgen.00.velocity-cmd
+net x-pos-fb    <= hm2_7i96s.0.stepgen.00.position-fb
+net x-pos-fb    => joint.0.motor-pos-fb
+net x-enable    <= joint.0.amp-enable-out
+net x-enable    => hm2_7i96s.0.stepgen.00.enable
+
+# ====================== Z AXIS ======================
+net z-pos-cmd   <= joint.2.motor-pos-cmd
+net z-pos-cmd   => hm2_7i96s.0.stepgen.02.velocity-cmd
+net z-pos-fb    <= hm2_7i96s.0.stepgen.02.position-fb
+net z-pos-fb    => joint.2.motor-pos-fb
+net z-enable    <= joint.2.amp-enable-out
+net z-enable    => hm2_7i96s.0.stepgen.02.enable
+
+# Manual tool change
+net tool-prepare     iocontrol.0.tool-prepare      => hal_manualtoolchange.change
+net tool-prepared    hal_manualtoolchange.changed  => iocontrol.0.tool-prepared
+net tool-number      iocontrol.0.tool-number       => hal_manualtoolchange.number
