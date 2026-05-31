@@ -1,6 +1,6 @@
 # Mesa 7i96s + Motion
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config="firmware=hm2/7i96s/7i96s_d.bit num_stepgens=4 num_pwmgens=1 num_encoders=1"
+loadrt hm2_eth board_ip="192.168.1.121" config="firmware=hm2/7i96s/7i96s_d.bit num_stepgens=4 num_pwmgens=1 num_encoders=1"
 
 loadrt motion
 
