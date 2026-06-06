@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "=== Updating Git with latest LinuxCNC config ==="
 
-cd ~/linuxcnc-configs
+cd ~/linuxcnc-lathe-config
 
 git pull origin main
 
